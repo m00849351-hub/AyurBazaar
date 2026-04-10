@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Admin Panel</h2>
+
+<form method="POST" enctype="multipart/form-data">
+<input name="name">
+<input name="price">
+<input name="category">
+<input type="file" name="image">
+<button>Add</button>
+</form>
+
+{% endblock %}

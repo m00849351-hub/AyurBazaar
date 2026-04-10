@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Your Cart 🛒</h2>
+
+{% for p, qty, subtotal in products %}
+<div>
+    <h3>{{p[1]}}</h3>
+    <p>Price: ₹{{p[2]}}</p>
+    <p>Quantity: {{qty}}</p>
+    <p>Subtotal: ₹{{subtotal}}</p>
+
+    <a href="/remove/{{p[0]}}">❌ Remove</a>
+    <a href="/payment">Proceed to Payment</a>
+</div>
+{% endfor %}
+
+<h2>Total: ₹{{total}}</h2>
+
+<a href="/order">Place Order</a>
+
+{% endblock %}
