@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Wishlist</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="navbar">
+    <h2>❤️ Wishlist</h2>
+    <a href="/">Home</a>
+</div>
+
+<div class="products">
+
+{% if products|length == 0 %}
+<h2 style="text-align:center;">Your wishlist is empty!</h2>
+{% endif %}
+
+{% for p in products %}
+<div class="card">
+
+<img src="{{ url_for('static', filename=p.image) }}">
+
+<h3>{{ p.name }}</h3>
+
+<p class="price">₹{{ p.price }}</p>
+
+<a href="/add/{{ p.id }}">
+<button class="btn-cart">Add to Cart</button>
+</a>
+
+<a href="/remove_wishlist/{{ p.id }}">
+<button class="btn-buy">Remove</button>
+</a>
+
+</div>
+{% endfor %}
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{ product.name }}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="navbar">
+    <h2>🌿 AyurBazaar</h2>
+    <a href="/">Home</a>
+    <a href="/cart">Cart 🛒</a>
+</div>
+
+<div style="padding:40px; display:flex; gap:40px;">
+
+<img src="{{ url_for('static', filename=product.image) }}" width="300">
+
+<div>
+<h1>{{ product.name }}</h1>
+
+<p class="price">₹{{ product.price }}</p>
+
+<p>100% Natural Ayurvedic Product 🌿</p>
+
+<a href="/add/{{ product.id }}">
+<button class="btn-cart">Add to Cart</button>
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>

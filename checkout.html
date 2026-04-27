@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Checkout</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="navbar">
+    <h2>💳 Checkout</h2>
+    <a href="/">Home</a>
+</div>
+
+<div style="padding:30px;">
+
+<h2>Your Order</h2>
+
+{% for p in products %}
+<div class="card">
+    <h3>{{ p.name }}</h3>
+    <p>₹{{ p.price }} x {{ p.quantity }}</p>
+</div>
+{% endfor %}
+
+<h2>Total: ₹{{ total }}</h2>
+
+<h2>Delivery Address</h2>
+
+<form action="/place_order" method="POST">
+
+<input type="text" name="name" placeholder="Full Name" required><br><br>
+
+<input type="text" name="address" placeholder="Address" required><br><br>
+
+<input type="text" name="city" placeholder="City" required><br><br>
+
+<h3>Payment Method</h3>
+
+<input type="radio" name="payment" value="cod" checked> Cash on Delivery<br>
+<input type="radio" name="payment" value="upi"> UPI<br>
+<input type="radio" name="payment" value="card"> Card<br><br>
+
+<button class="btn-buy">Place Order</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

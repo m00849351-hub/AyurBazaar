@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AyurBazaar</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="navbar">
+
+    <h2>🌿 AyurBazaar</h2>
+
+    <form method="GET" class="search-form">
+        <input 
+            type="text" 
+            name="q" 
+            value="{{ request.args.get('q','') }}" 
+            placeholder="Search Ayurvedic products..." 
+            class="search-box"
+        >
+        <button type="submit" class="btn-cart">Search</button>
+    </form>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/cart">Cart 🛒</a>
+        <a href="/wishlist">❤️ Wishlist</a>
+
+        {% if session.get("user") %}
+            <span>Hi, {{ session["user"] }}</span>
+            <a href="/logout">Logout</a>
+        {% else %}
+            <a href="/login">Login</a>
+            <a href="/signup">Signup</a>
+        {% endif %}
+    </div>
+
+</div>
+
+<div class="hero">
+    <h1>Natural Ayurvedic Store</h1>
+    <p>Healthy Living Starts Here 🌿</p>
+</div>
+
+<div class="categories">
+
+<a href="/">All</a>
+
+<a href="/?category=health">Health Care</a>
+
+<a href="/?category=hair">Hair Care</a>
+
+<a href="/?category=skin">Skin Care</a>
+
+<a href="/?category=body">Body Care</a>
+
+<a href="/?category=food">Food & Herbal</a>
+
+</div>
+
+<div class="products">
+{% for p in products %}
+<div class="card">
+
+    <div class="image-container">
+        <img src="{{ url_for('static', filename=p.image) }}">
+
+        <a href="/add_wishlist/{{ p.id }}" class="wishlist-btn">
+            ❤️
+        </a>
+    </div>
+
+    <h3>{{ p.name }}</h3>
+    <p class="price">₹{{ p.price }}</p>
+    <p class="rating">⭐ {{ p.rating }}</p>
+    <a href="/add/{{ p.id }}">
+        <button class="btn-cart">Add to Cart</button>
+    </a>
+
+</div>
+
+</div>
+{% endfor %}
+</div>
+
+<div class="footer">
+    © AyurBazaar 🌿 | Natural Store
+</div>
+
+</body>
+</html>

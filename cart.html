@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="navbar">
+    <h2>🛒 Your Cart</h2>
+    <a href="/">Home</a>
+</div>
+
+<div class="products">
+
+{% if products|length == 0 %}
+<h2 style="text-align:center;">Your cart is empty!</h2>
+{% endif %}
+
+{% for p in products %}
+<div class="card">
+
+<img src="{{ url_for('static', filename=p.image) }}">
+
+<h3>{{ p.name }}</h3>
+
+<p>Quantity: {{ p.quantity }}</p>
+
+<div style="display:flex; align-items:center; gap:10px;">
+
+<a href="/decrease/{{ p.id }}">
+    <button class="btn-buy">-</button>
+</a>
+
+<span>{{ p.quantity }}</span>
+
+<a href="/increase/{{ p.id }}">
+    <button class="btn-cart">+</button>
+</a>
+
+</div>
+
+<p class="price">₹{{ p.price * p.quantity }}</p>
+
+<a href="/remove/{{ p.id }}">
+    <button class="btn-buy">Remove</button>
+</a>
+
+</div>
+{% endfor %}
+
+</div>
+
+<h2 style="text-align:center;">Total: ₹{{ total }}</h2>
+
+<a href="/checkout">
+    <button class="btn-cart">Proceed to Checkout</button>
+</a>
+
+</body>
+</html>
