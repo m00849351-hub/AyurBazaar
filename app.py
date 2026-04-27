@@ -7,7 +7,6 @@ app.secret_key = "secret123"
 
 # -------- USERS --------
 users = {}
-
 # -------- PRODUCTS --------
 products = [
     {"id": 1, "name": "Exe Punch Tulsi Oil", "price": 399, "category": "health", "image": "images/image1.jpeg", "rating": 4.2},
